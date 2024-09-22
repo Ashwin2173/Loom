@@ -1,0 +1,14 @@
+import type;
+
+fn init {
+    pyimport libs.pylibs.list_;
+}
+
+fn len : list {
+    if(type.type(list) != "list") {
+        ret 0;
+    } 
+    pyarg list;
+    pycall libs.pylibs.list_ len_;
+    ret reg;
+}

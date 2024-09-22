@@ -1,0 +1,20 @@
+import console;
+import type;
+
+fn main : args {
+    var input = console.in();
+    input = type.int(input);
+
+    var temp = input;
+    var sum = 0;
+    while(temp > 0) {
+        sum = sum * 10 + temp % 10;
+        temp = type.int(temp / 10);
+    }
+    if (input == sum) {
+        console.log("Palindrome");
+    } else {
+         console.log("not Palindrome");
+    }
+    ret 1;
+}

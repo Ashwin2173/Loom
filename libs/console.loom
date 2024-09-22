@@ -1,0 +1,36 @@
+fn init {
+    pyimport libs.pylibs.console;
+}
+
+fn error : message {
+    pyarg "red";
+    pyarg message;
+    pyarg "\n";
+    pycall libs.pylibs.console cprint;
+}
+
+fn log : message {
+    pyarg "blue";
+    pyarg message;
+    pyarg "\n";
+    pycall libs.pylibs.console cprint;
+}
+
+fn warn : message {
+    pyarg "yellow";
+    pyarg message;
+    pyarg "\n";
+    pycall libs.pylibs.console cprint;
+}
+
+fn write : message {
+    pyarg "";
+    pyarg message;
+    pyarg "";
+    pycall libs.pylibs.console cprint;
+}
+
+fn in : {
+    pycall libs.pylibs.console _in;
+    ret reg;
+}

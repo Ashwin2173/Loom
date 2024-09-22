@@ -1,0 +1,27 @@
+fn init : {
+    pyimport libs.pylibs.type;
+}
+
+fn type : arg {
+    pyarg arg;
+    pycall libs.pylibs.type _type;
+    ret reg;
+}
+
+fn str : arg {
+    pyarg arg;
+    pycall libs.pylibs.type _str;
+    ret reg;
+}
+
+fn int : arg {
+    pyarg arg;
+    pycall libs.pylibs.type _int;
+    ret reg;
+}
+
+fn float : arg {
+    pyarg arg;
+    pycall libs.pylibs.type _double;
+    ret reg;
+}

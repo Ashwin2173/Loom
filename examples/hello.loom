@@ -1,0 +1,17 @@
+import console;
+import list;
+
+fn main: args {
+    var fruit = "apple";
+    console.log([
+        "banana",
+        "grapes",
+        demo(1, 2),
+        fruit
+    ]);
+    return 1;
+}
+
+fn demo : x y {
+    ret "orange";
+}
