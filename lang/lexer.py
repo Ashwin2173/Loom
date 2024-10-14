@@ -36,7 +36,7 @@ def lexify():
             assert len(program) > pointer, f"lexfault: '{t_char}' without end at line {line_number}"
             pointer += 1
             add_token()
-            if(program[pointer] == " "):
+            if(program[pointer] == " " or program[pointer] == "\n"):
                 left_pointer = pointer + 1
             else:
                 left_pointer = pointer

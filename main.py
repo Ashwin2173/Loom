@@ -22,7 +22,6 @@ def main(args):
     if(Props.mod_path == None):
         error("Error: no config of 'loom_libs' found")
         exit(1)
-
     if(len(args) < 1 or args[0][-len(LOOM_EXT):] != LOOM_EXT):
         info("USAGE: loom <std_file> [options]")
         info("<std_file>: *.loom file")
@@ -120,7 +119,7 @@ def execute(hill:dict, path:str) -> None:
     except KeyboardInterrupt:
         print_stack_trace("InterruptError", "forced interrupt", path)
     except ExpressionError as err:
-        print_stack_trace("ExpressionError" ,"Bad Expression", path)
+        print_stack_trace("ExpressionError" ,f"Bad Expression [processed_expression: {err.expression}]", path)
     except VariableError as err:
         print_stack_trace("VariableError", err, path)
     except ModuleNotFoundError as err:
@@ -135,7 +134,7 @@ def execute(hill:dict, path:str) -> None:
         block_exec = Orchestrator.stack[-1][1]
         line = block_exec.body[block_exec.pointer].get(Props.h_code.get("line"))
         path = (" > ".join([item[0] for item in Orchestrator.stack]))
-        except_message("Orchestrator", f"At line {line},\nstack: {path}, \nInternal Error: {err}")
+        except_message("Orchestrator", f"At line {line},\nstack: {path} \nInternal Error: {err}")
 
 def print_stack_trace(title, err, path):
     stack_trace = Orchestrator.stack
@@ -164,5 +163,5 @@ def hill_error_trace(walk, err, path):
     exit(1)
 
 if(__name__ == "__main__"):
-    # main([".\\examples\\x.loom", "--execute"])
+    # main([".\\examples\\test.loom", "--tokens"])
     main(sys.argv[1:])
