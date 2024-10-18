@@ -9,7 +9,7 @@ fn main: args {
         demo(1, 2),
         fruit
     ]);
-    return 1;
+    ret 1;
 }
 
 fn demo : x y {
