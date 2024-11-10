@@ -1,0 +1,14 @@
+import console;
+import time;
+
+fn main : args {
+    var start_time = time.now();
+    var x = 0;
+    while(x<=1000000){
+        x = x + 1;
+    }
+    var end_time = time.now();
+    var time_taken = end_time - start_time;
+    console.log(time_taken);
+    ret 1;
+}

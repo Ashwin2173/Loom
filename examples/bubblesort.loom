@@ -1,0 +1,46 @@
+import list;
+import console;
+
+fn bubbleSort : arr {
+    var n = list.length(arr);
+    var swapped = true;
+
+    while (swapped) {
+        swapped = false;
+        var i = 0;
+
+        while (i < n - 1) {
+            if (arr[i] > arr[i + 1]) {
+                var temp = arr[i];
+                arr = list.updateAt(arr, i, arr[i + 1]); 
+                arr = list.updateAt(arr, i + 1, temp);  
+                swapped = true;
+            }
+            i = i + 1;
+        }
+        n = n - 1;
+    }
+    ret arr;
+}
+
+fn main : args {
+    console.write("Enter the size of the array: ");
+    var size = type.int(console.in());
+    var array = list.new(size);
+    var index = 0;
+    while (index < size) {
+        console.write("[" + type.str(index) + "] > ");
+        var value = type.int(console.in());
+        array = list.updateAt(array, index, value);
+        index = index + 1;
+    }
+
+    console.write("Original array: " + type.str(array));
+    console.log("");
+
+    var sortedArray = bubbleSort(array);
+
+    console.write("Sorted array: " + type.str(sortedArray));
+    console.log("");
+    ret 0;
+}

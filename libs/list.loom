@@ -4,11 +4,31 @@ fn init {
     pyimport libs.pylibs.list_;
 }
 
-fn len : list {
+fn length : list {
     if(type.type(list) != "list") {
         ret 0;
     } 
     pyarg list;
     pycall libs.pylibs.list_ len_;
+    ret reg;
+}
+
+fn updateAt : list index value {
+    if(type.type(list) != "list") {
+        raise INVALID_ARGUMENT, "List expected";
+    }
+    if(index < 0 | index >= list.length(list)) {
+        raise INDEX_OUT_OF_BOUNDS, "Index out of bounds";
+    }
+    pyarg list;
+    pyarg index;
+    pyarg value;
+    pycall libs.pylibs.list_ updateAt;
+    ret reg;
+}
+
+fn new : size {
+    pyarg size;
+    pycall libs.pylibs.list_ newList;
     ret reg;
 }

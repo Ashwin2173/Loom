@@ -1,0 +1,58 @@
+import type;
+import list;
+import console;
+
+fn getRule : x y z {
+	if (x == 1 & y == 1 & z == 1) { ret 0; }
+	if (x == 1 & y == 1 & z == 0) { ret 1; }
+	if (x == 1 & y == 0 & z == 1) { ret 1; }
+	if (x == 1 & y == 0 & z == 0) { ret 0; }
+	if (x == 0 & y == 1 & z == 1) { ret 1; }
+	if (x == 0 & y == 1 & z == 0) { ret 1; }
+	if (x == 0 & y == 0 & z == 1) { ret 1; }
+	if (x == 0 & y == 0 & z == 0) { ret 0; }
+	raise Exception, "Invalid input";
+}
+
+fn printArray : arr {
+	var index = 0;
+	var length = list.length(arr);
+	while (index < length) {
+		if (arr[index] == 1) {
+			console.write("#");
+		} else {
+			console.write(" ");
+		}
+		index = index + 1;
+	}
+	console.write("\\n");
+	ret 0;
+}
+
+fn main : args {
+	console.write("Enter the size of the initial state: ");
+	var size = type.int(console.in());
+	console.write("Enter the number of steps: ");
+	var step = type.int(console.in());
+
+	var initState = list.new(size);
+	var length = list.length(initState);
+	initState = list.updateAt(initState, length-2, 1);
+
+	while (step >= 0) {
+		printArray(initState);
+		var nextState = list.new(length);
+		var index = 1;
+		while (index < length-1) {
+			var state1 = initState[index-1];
+			var state2 = initState[index];
+			var state3 = initState[index+1];
+			var rule = getRule(state1, state2, state3);
+			nextState = list.updateAt(nextState, index, rule);
+			index = index + 1;
+		}
+		initState = nextState;
+		step = step - 1;
+	}
+	ret 0;
+}
