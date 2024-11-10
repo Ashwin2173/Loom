@@ -40,7 +40,7 @@ def lexify():
                 left_pointer = pointer + 1
             else:
                 left_pointer = pointer
-        elif(char == " "):
+        elif(char == " " or char == "\t"):
             add_token()
             left_pointer = pointer + 1
         elif(char == "\n"):

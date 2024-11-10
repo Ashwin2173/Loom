@@ -87,7 +87,7 @@ class Build():
             elif(item[0] in {Props.t_int_lit, Props.t_float_lit}):
                 exp_tokens.append(["r", str(item[2].get("raw"))])
             else:
-                raise ExpressionError(f"Invalid token for expression")
+                raise ExpressionError(f"Invalid token for expression [ERR: {item[0]}]")
             i += 1
         return exp_tokens
 
@@ -109,7 +109,8 @@ class Execute():
                 else:
                     value = self.variable_pool.get(token[1])
                 if(type(value) == str):
-                    self.stack.append(f'"{value}"')
+                    value = value.replace("'", "\\'")
+                    self.stack.append(f"'{value}'")
                 else:
                     self.stack.append(str(value))
             elif(token[0] == "fc"):
@@ -129,13 +130,14 @@ class Execute():
                     args = post_args
                 )
                 if(type(value) == str):
-                    self.stack.append(f'"{value}"')
+                    value = value.replace("'", "\\'")
+                    self.stack.append(f"'{value}'")
                 else:
                     self.stack.append(str(value))
             else:
-                self.stack.append(token[1])
-
+                self.stack.append(token[1].replace("'", "\\'"))
+        final_expression = " ".join(self.stack)
         try:
-            return eval(" ".join(self.stack))
+            return eval(final_expression)
         except Exception as error:
-            raise ExpressionError(error)
+            raise ExpressionError(error, final_expression)

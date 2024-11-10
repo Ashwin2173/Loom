@@ -11,7 +11,9 @@ class CustomError(Exception):
 
 
 class ExpressionError(Exception):
-    pass
+    def __init__(self, message:str, expression:str=None):
+        super().__init__(message)
+        self.expression = "" if expression == None else expression
 
 class VariableError(Exception): 
     pass 

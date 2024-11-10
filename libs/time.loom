@@ -1,0 +1,8 @@
+fn init {
+    pyimport libs.pylibs.time_;
+}
+
+fn now {
+    pycall libs.pylibs.time_ _time;
+    ret reg;
+}

@@ -144,8 +144,9 @@ def print_stack_trace(title, err, path):
         line = trace[1].peek().get(Props.h_code.get("line"))
         error(f"    In {trace[0]}, line {line}")
     try:
-        raw_line = Props.raw_program.split('\n')[line - 1].lstrip()
-        error(f"> {raw_line}")
+        # raw_line = Props.raw_program.split('\n')[line - 1].lstrip()
+        # error(f"> {raw_line}")
+        pass
     except:
         pass
     error(f"{title}: {err}")
